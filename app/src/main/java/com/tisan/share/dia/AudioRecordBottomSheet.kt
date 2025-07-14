@@ -3,11 +3,14 @@ package com.tisan.share.dia
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
+import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.media.MediaRecorder
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +21,13 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.tisan.location.databinding.DialogAudioRecordBinding
 import com.tisan.share.utils.CryptoUtil
+import com.tisan.share.vm.AudioRecordViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -48,6 +54,8 @@ class AudioRecordBottomSheet : BottomSheetDialogFragment() {
     private var isRecording = false
     private val barCount = 45
 
+    private lateinit var viewModel: AudioRecordViewModel
+
     var onRecordSaved: (() -> Unit)? = null // 外部刷新用 callback
 
     override fun onCreateView(
@@ -60,6 +68,13 @@ class AudioRecordBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                @Suppress("UNCHECKED_CAST")
+                return AudioRecordViewModel(requireContext().applicationContext) as T
+            }
+        })[AudioRecordViewModel::class.java]
 
         setupFakeWaveBars()
 
@@ -123,9 +138,21 @@ class AudioRecordBottomSheet : BottomSheetDialogFragment() {
         val target = File(targetDir, origin.name.replace(".m4a", ".enc"))
 
         try {
-            val encrypted = CryptoUtil.encrypt(origin.readBytes()) // 你已有工具类
-            target.writeBytes(encrypted)
-            origin.delete()
+            origin.inputStream().use { input ->
+                target.outputStream().use { output ->
+                    CryptoUtil.encrypt(input, output)
+                }
+            }
+
+            // 删除原始录音文件
+            if (!origin.delete()) {
+                Log.w("AudioRecord", "源录音文件删除失败: ${origin.absolutePath}")
+            }
+
+            // ✅ 调用 VM 入库逻辑
+            lifecycleScope.launch {
+                viewModel.importSingleFile(requireContext(), Uri.fromFile(target))
+            }
         } catch (e: Exception) {
             Toast.makeText(requireContext(), "加密失败: ${e.message}", Toast.LENGTH_SHORT).show()
             return
@@ -135,6 +162,7 @@ class AudioRecordBottomSheet : BottomSheetDialogFragment() {
         onRecordSaved?.invoke()
         dismiss()
     }
+
 
     private fun startTimer() {
         timerJob = lifecycleScope.launch(Dispatchers.Main) {

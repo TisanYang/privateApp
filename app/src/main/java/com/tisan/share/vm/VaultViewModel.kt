@@ -46,7 +46,7 @@ object VaultViewModel : BaseViewModel() {
     val importResult: SharedFlow<String> = _importResult.asSharedFlow()
 
     // 获取原始文件名
-    private fun getFileName(context: Context, uri: Uri): String? {
+    fun getFileName(context: Context, uri: Uri): String? {
         val cursor = context.contentResolver.query(uri, null, null, null, null)
         val nameIndex = cursor?.getColumnIndex(OpenableColumns.DISPLAY_NAME)
         cursor?.moveToFirst()
@@ -262,7 +262,7 @@ object VaultViewModel : BaseViewModel() {
         }
     }
 
-    private enum class ImportResult { SUCCESS, DUPLICATE, FAIL }
+    enum class ImportResult { SUCCESS, DUPLICATE, FAIL }
 
     fun generateVideoThumbnail(context: Context, uri: Uri): Bitmap? {
         return try {
