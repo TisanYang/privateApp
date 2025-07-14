@@ -9,7 +9,8 @@ data class EncryptedFileItem(
     val originalName: String,
     val mimeType: String,
     val timestamp: Long,
-    val filePath: String // 加密文件的完整路径
+    val filePath: String, // 加密文件的完整路径
+    val thumbPath: String? = null // ✅ 新增字段
 ): Parcelable {
     fun getCategory(): String = when {
         mimeType.startsWith("image/") -> "图片"

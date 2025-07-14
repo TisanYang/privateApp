@@ -9,4 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#fa3b3c</color>
     <color name="tab_text_normal">#FF000000</color>
+    <color name="total_bg">#F5F7FA</color>
+    <color name="text_primary">#1F2D40</color>
+    <color name="text_secondary">#6E7B8B</color>
+    <color name="text_disabled">#A0A7B0</color>
+    <color name="text_sel">#4A90E2</color>
 </resources>

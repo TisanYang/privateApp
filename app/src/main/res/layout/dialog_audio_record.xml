@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="24dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/tv_record_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="准备录音"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingBottom="12dp" />
+
+
+    <!-- 波形动画 -->
+    <!--<LinearLayout
+        android:id="@+id/ll_wave_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp">
+
+        &lt;!&ndash; 麦克风图标 &ndash;&gt;
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/icon_record"
+            android:layout_marginEnd="12dp" />
+
+        &lt;!&ndash; 波动区 &ndash;&gt;
+        <HorizontalScrollView
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/wave_container"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:clipChildren="false"
+                android:clipToPadding="false"/>
+        </HorizontalScrollView>
+    </LinearLayout>-->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp">
+
+        <LinearLayout
+            android:id="@+id/ll_wave_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_gravity="center"> <!-- 🔥让整体居中 -->
+
+            <!-- 麦克风 -->
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/icon_record"
+                android:layout_marginEnd="12dp"/>
+
+            <!-- 波形 -->
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/wave_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"/>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </FrameLayout>
+
+
+
+
+    <!-- 计时器 -->
+    <TextView
+        android:id="@+id/tv_record_timer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- 控制按钮 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="开始"
+            android:backgroundTint="@android:color/holo_green_dark"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:id="@+id/btn_pause"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="暂停"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@android:color/holo_orange_dark"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:id="@+id/btn_stop"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="结束"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
+</LinearLayout>

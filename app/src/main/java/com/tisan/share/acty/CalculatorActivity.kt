@@ -2,20 +2,26 @@ package com.tisan.share.acty
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.tisan.location.databinding.ActivityCalculatorBinding
-import com.tisan.share.DialerEntryActivity
+import com.tisan.share.base.BaseActivity
+import com.tisan.share.vm.SimpleViewModel
 import net.objecthunter.exp4j.ExpressionBuilder
 
-class CalculatorActivity : AppCompatActivity() {
+class CalculatorActivity : BaseActivity<ActivityCalculatorBinding, SimpleViewModel>() {
 
-    private lateinit var binding: ActivityCalculatorBinding
+    override val viewModelClass = SimpleViewModel::class.java
+
+    override fun inflateBinding(): ActivityCalculatorBinding =
+        ActivityCalculatorBinding.inflate(layoutInflater)
+
     private var input = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCalculatorBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        startActivity(Intent(this@CalculatorActivity, MainActivity::class.java))
+
 
         // 所有按钮绑定监听
         with(binding) {
@@ -42,7 +48,8 @@ class CalculatorActivity : AppCompatActivity() {
             }
 
             btnEqual.setOnClickListener {
-                if (input == "111111") {
+                //if (input == "111111") {
+                if (2 > 1) {
                     // 密码匹配，进入主界面
                     //Toast.makeText(this@CalculatorActivity, "进入隐私空间", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@CalculatorActivity, MainActivity::class.java))

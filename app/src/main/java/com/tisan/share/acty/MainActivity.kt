@@ -1,5 +1,7 @@
 package com.tisan.share.acty
 
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.tabs.TabLayout
 import com.tisan.location.R
 import com.tisan.location.databinding.ActivityMainBinding
@@ -21,26 +23,19 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     private val fragments by lazy {
         listOf(
             PrivateFilesFragment(),
-            ManagerFragment(),
             FunctionFragment(),
+            ManagerFragment(),
             MyFragment()
         )
     }
 
     override fun initViews() {
-//// 初始化 Tab
-//        val titles = listOf("文件", "录音", "拍照", "更多")
-//        titles.forEach { binding.tabLayout.addTab(binding.tabLayout.newTab().setText(it)) }
-//
-//        // Tab 点击事件通知 ViewModel
-//        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-//            override fun onTabSelected(tab: TabLayout.Tab) {
-//                viewModel.selectTab(tab.position)
-//            }
-//
-//            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-//            override fun onTabReselected(tab: TabLayout.Tab?) {}
-//        })
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.root)) { view, insets ->
+            val bottom = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
+            view.setPadding(0, 0, 0, bottom)
+            insets
+        }
 
         // 默认切第一个
         switchFragment(0)

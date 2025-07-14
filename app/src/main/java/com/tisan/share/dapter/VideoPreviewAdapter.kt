@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tisan.share.datdabean.EncryptedFileItem
 import com.tisan.share.utils.CryptoUtil
 import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 
 class VideoPreviewAdapter(
     private val context: Context,
@@ -34,13 +36,21 @@ class VideoPreviewAdapter(
         val item = videoItems[position]
 
         try {
-            val encBytes = File(item.filePath).readBytes()
-            val decrypted = CryptoUtil.decrypt(encBytes)
+//            val encBytes = File(item.filePath).readBytes()
+//            val decrypted = CryptoUtil.decrypt(encBytes)
+//
+//            // 写入临时文件
+//            val tempVideoFile = File.createTempFile("video_preview_", ".mp4", context.cacheDir)
+//            tempVideoFile.writeBytes(decrypted)
 
-            // 写入临时文件
+            val encryptedFile = File(item.filePath)
             val tempVideoFile = File.createTempFile("video_preview_", ".mp4", context.cacheDir)
-            tempVideoFile.writeBytes(decrypted)
 
+            FileInputStream(encryptedFile).use { input ->
+                FileOutputStream(tempVideoFile).use { output ->
+                    CryptoUtil.decrypt(input, output)
+                }
+            }
             // 初始化播放器
             val player = ExoPlayer.Builder(context).build()
             val mediaItem = MediaItem.fromUri(Uri.fromFile(tempVideoFile))

@@ -1,5 +1,6 @@
 package com.tisan.share.dapter
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,32 +47,40 @@ class EncryptedFileAdapter(
             } else {
                 name.text = item.originalName.truncate(10)
 
-                // 解密临时文件路径
-                val tempFile = File.createTempFile("dec_", ".jpg", itemView.context.cacheDir)
-                val encryptedFile = File(item.filePath)
 
-                try {
+                if (!item.thumbPath.isNullOrEmpty()) {
+                    // ✅ 有缩略图，解密后显示
+                    val encryptedThumbBytes = File(item.thumbPath).readBytes()
+                    val decryptedThumb = CryptoUtil.decrypt(encryptedThumbBytes)
+                    val bitmap =
+                        BitmapFactory.decodeByteArray(decryptedThumb, 0, decryptedThumb.size)
+                    thumb.setImageBitmap(bitmap)
+                } else {
+                    // 解密临时文件路径
+                    val tempFile = File.createTempFile("dec_", ".jpg", itemView.context.cacheDir)
+                    val encryptedFile = File(item.filePath)
+
+                    try {
 //                    val encryptedBytes = encryptedFile.readBytes()
 //                    val decryptedBytes = CryptoUtil.decrypt(encryptedBytes)
 //                    tempFile.writeBytes(decryptedBytes)
-                    CryptoUtil.decryptFile(encryptedFile, tempFile)
+                        CryptoUtil.decryptFile(encryptedFile, tempFile)
 
-                    // 用 Glide 加载解密后的图像
-                    Glide.with(itemView.context)
-                        .load(tempFile)
-                        .placeholder(R.drawable.ic_launcher_background)
-                        .error(R.drawable.ic_launcher_background)
-                        .into(thumb)
+                        // 用 Glide 加载解密后的图像
+                        Glide.with(itemView.context).load(tempFile)
+                            .placeholder(R.drawable.ic_launcher_background)
+                            .error(R.drawable.ic_launcher_background).into(thumb)
 
-                } catch (e: Exception) {
-                    // 加载失败时可以显示默认图
-                    thumb.setImageResource(R.drawable.ic_launcher_background)
+                    } catch (e: Exception) {
+                        // 加载失败时可以显示默认图
+                        thumb.setImageResource(R.drawable.ic_launcher_background)
+                    }
                 }
             }
         }
     }
 }
 
-private fun String.truncate(maxLength: Int): CharSequence {
+fun String.truncate(maxLength: Int): CharSequence {
     return if (this.length <= maxLength) this else this.substring(0, maxLength) + "..."
 }

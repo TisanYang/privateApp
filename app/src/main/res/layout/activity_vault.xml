@@ -1,22 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:background="@color/total_bg"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
-
-    <!-- 页面标题 -->
-    <TextView
-        android:id="@+id/vaultTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="隐私空间"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:paddingBottom="8dp" />
+    android:layout_height="match_parent">
 
     <!-- 外层模块 RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
+        android:padding="5dp"
+        android:layout_marginTop="32dp"
         android:id="@+id/moduleRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"

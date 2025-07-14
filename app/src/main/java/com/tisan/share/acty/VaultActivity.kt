@@ -2,6 +2,7 @@ package com.tisan.share.acty
 
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -15,7 +16,7 @@ import com.tisan.share.datdabean.FileModuleItem
 import com.tisan.share.datdabean.ModuleType
 import com.tisan.share.vm.VaultViewModel
 
-class VaultActivity : BaseActivity<ActivityVaultBinding,VaultViewModel>() {
+class VaultActivity : BaseActivity<ActivityVaultBinding, VaultViewModel>() {
 
     private lateinit var moduleAdapter: ModuleAdapter
     override val viewModelClass = VaultViewModel::class.java
@@ -25,10 +26,7 @@ class VaultActivity : BaseActivity<ActivityVaultBinding,VaultViewModel>() {
         ActivityVaultBinding.inflate(layoutInflater)
 
     override fun initViews() {
-        moduleAdapter = ModuleAdapter {
-            // “查看更多”点击事件，跳转对应模块详情页
-            //goToDetailPage(moduleType)
-        }
+        moduleAdapter = ModuleAdapter()
 
         binding.moduleRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@VaultActivity)
@@ -51,7 +49,7 @@ class VaultActivity : BaseActivity<ActivityVaultBinding,VaultViewModel>() {
     private val filePickerLauncher =
         registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
             uri?.let {
-                viewModel.importEncryptedFile(this, it)
+                //viewModel.importEncryptedFile(this, it)
             }
         }
 

@@ -9,6 +9,9 @@ import com.tisan.location.R
 import com.tisan.share.datdabean.EncryptedFileItem
 import com.tisan.share.utils.CryptoUtil
 import java.io.File
+import java.io.FileInputStream
+import javax.crypto.Cipher
+import javax.crypto.CipherInputStream
 
 class ImagePreviewAdapter(private val images: List<EncryptedFileItem>) :
     RecyclerView.Adapter<ImagePreviewAdapter.ImageViewHolder>() {
@@ -33,9 +36,16 @@ class ImagePreviewAdapter(private val images: List<EncryptedFileItem>) :
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val item = images[position]
         try {
-            val encBytes = File(item.filePath).readBytes()
-            val decrypted = CryptoUtil.decrypt(encBytes)
-            val bitmap = BitmapFactory.decodeByteArray(decrypted, 0, decrypted.size)
+//            val encBytes = File(item.filePath).readBytes()
+//            val decrypted = CryptoUtil.decrypt(encBytes)
+//            val bitmap = BitmapFactory.decodeByteArray(decrypted, 0, decrypted.size)
+
+
+            val encryptedFile = File(item.filePath)
+            val inputStream = FileInputStream(encryptedFile)
+            val decryptedStream = CipherInputStream(inputStream, CryptoUtil.getCipher(Cipher.DECRYPT_MODE))
+            val bitmap = BitmapFactory.decodeStream(decryptedStream)
+
             holder.imageView.setImageBitmap(bitmap)
             holder.imageView.setOnClickListener {
                 onItemClick?.invoke(item)

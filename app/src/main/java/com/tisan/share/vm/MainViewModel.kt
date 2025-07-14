@@ -22,10 +22,10 @@ object MainViewModel : BaseViewModel(){
     }
 
     val tabList = listOf(
-        TabInfo("文件", R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_background),
-        TabInfo("录音", R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_background),
-        TabInfo("拍照", R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_background),
-        TabInfo("更多", R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_background)
+        TabInfo("文件", R.drawable.file_unsel, R.drawable.file_sel),
+        TabInfo("拍摄", R.drawable.take_unsel, R.drawable.take_sel),
+        TabInfo("收藏", R.drawable.love_unsel, R.drawable.love_sel),
+        TabInfo("我的", R.drawable.my_unsel, R.drawable.my_sel)
     )
 
     fun createTabView(context: Context, info: TabInfo, selected: Boolean): View {
@@ -36,7 +36,7 @@ object MainViewModel : BaseViewModel(){
         icon.setImageResource(if (selected) info.iconSelected else info.iconNormal)
         text.text = info.title
 
-        val colorRes = if (selected) R.color.colorPrimary else R.color.tab_text_normal
+        val colorRes = if (selected) R.color.text_sel else R.color.text_secondary
         text.setTextColor(ContextCompat.getColor(context, colorRes))
 
         return view
@@ -48,7 +48,7 @@ object MainViewModel : BaseViewModel(){
 
         icon.setImageResource(if (selected) info.iconSelected else info.iconNormal)
 
-        val colorRes = if (selected) R.color.colorPrimary else R.color.tab_text_normal
+        val colorRes = if (selected) R.color.text_sel else R.color.text_secondary
         text.setTextColor(ContextCompat.getColor(context, colorRes))
     }
 }
