@@ -24,7 +24,7 @@ object MainViewModel : BaseViewModel(){
     val tabList = listOf(
         TabInfo("文件", R.drawable.file_unsel, R.drawable.file_sel),
         TabInfo("拍摄", R.drawable.take_unsel, R.drawable.take_sel),
-        TabInfo("收藏", R.drawable.love_unsel, R.drawable.love_sel),
+        //TabInfo("收藏", R.drawable.love_unsel, R.drawable.love_sel),
         TabInfo("我的", R.drawable.my_unsel, R.drawable.my_sel)
     )
 

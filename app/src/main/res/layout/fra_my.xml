@@ -1,11 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:text="我的"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <!-- 隐私空间 -->
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        android:id="@+id/ll_privacy_space"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="12dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:id="@+id/tv_privacy_space"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="隐私空间"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/iv_privacy_space_arrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_right_arrow"
+            android:contentDescription="箭头" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DDDDDD" />
+
+    <!-- 密码锁设置 -->
+    <LinearLayout
+        android:id="@+id/ll_password_lock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="12dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:id="@+id/tv_password_lock"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="密码锁设置"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/iv_password_lock_arrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_right_arrow"
+            android:contentDescription="箭头" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DDDDDD" />
+
+    <!-- 问题反馈 -->
+    <LinearLayout
+        android:id="@+id/ll_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="12dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:id="@+id/tv_feedback"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="问题反馈"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/iv_feedback_arrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_right_arrow"
+            android:contentDescription="箭头" />
+    </LinearLayout>
 
 </LinearLayout>

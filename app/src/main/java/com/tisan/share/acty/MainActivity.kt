@@ -24,7 +24,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         listOf(
             PrivateFilesFragment(),
             FunctionFragment(),
-            ManagerFragment(),
+            //ManagerFragment(),
             MyFragment()
         )
     }

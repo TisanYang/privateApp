@@ -20,6 +20,7 @@
         android:layout_height="wrap_content" />
 
     <Button
+        android:visibility="gone"
         android:id="@+id/btnRecordAudio"
         android:text="录音"
         android:layout_marginTop="16dp"

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_file_sta"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="您已加密："
+        android:textColor="#333333"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <!-- 图片 -->
+    <include
+        android:id="@+id/itemImage"
+        layout="@layout/item_file_statistics" />
+
+    <!-- 视频 -->
+    <include
+        android:id="@+id/itemVideo"
+        layout="@layout/item_file_statistics" />
+
+    <!-- 音频 -->
+    <include
+        android:id="@+id/itemAudio"
+        layout="@layout/item_file_statistics" />
+
+    <!-- 文档 -->
+    <include
+        android:id="@+id/itemDocument"
+        layout="@layout/item_file_statistics" />
+
+    <!-- 总计 -->
+    <include
+        android:id="@+id/itemTotal"
+        layout="@layout/item_file_statistics" />
+
+</LinearLayout>
