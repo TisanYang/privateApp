@@ -1,33 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_root"
     android:layout_width="match_parent"
-    android:layout_height="48dp"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:padding="12dp"
     android:gravity="center_vertical"
-    android:paddingVertical="4dp">
+    android:background="?android:attr/selectableItemBackground">
 
     <ImageView
-        android:id="@+id/ivIcon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="12dp"
-        android:src="@drawable/ic_placeholder_left" />
+        android:id="@+id/iv_icon"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_placeholder_left"
+        android:scaleType="centerCrop"
+        android:layout_marginEnd="12dp" />
 
-    <TextView
-        android:id="@+id/tvLabel"
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:text="类型"
-        android:textSize="16sp"
-        android:textColor="#444444" />
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tv_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="图片"
+            android:textSize="16sp"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12 张 · 23.4 MB"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:layout_marginTop="2dp" />
+    </LinearLayout>
 
     <TextView
-        android:layout_marginRight="10dp"
-        android:id="@+id/tvCount"
+        android:id="@+id/tv_percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0 张"
-        android:textSize="16sp"
-        android:textColor="#666666" />
+        android:text=""
+        android:textSize="14sp"
+        android:textColor="#333333" />
 </LinearLayout>

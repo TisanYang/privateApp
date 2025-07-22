@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:windowSoftInputMode="adjustResize"
+    android:id="@+id/root_feedback"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+
+    <com.tisan.share.base.TitleView
+        android:id="@+id/title_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:rightText="历史记录"
+        app:showBack="true"
+        app:titleCentered="false"
+        app:titleText="问题反馈" />
+
+
+    <!-- Fragment 容器 -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

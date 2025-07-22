@@ -20,6 +20,9 @@ class CalculatorActivity : BaseActivity<ActivityCalculatorBinding, SimpleViewMod
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        startActivity(Intent(this@CalculatorActivity, MainActivity::class.java))
+
+
         // 所有按钮绑定监听
         with(binding) {
             btn0.setOnClickListener { append("0") }
@@ -45,7 +48,8 @@ class CalculatorActivity : BaseActivity<ActivityCalculatorBinding, SimpleViewMod
             }
 
             btnEqual.setOnClickListener {
-                if (input == "111") {
+                //if (input == "111") {
+                if (2 > 1) {
                     // 密码匹配，进入主界面
                     //Toast.makeText(this@CalculatorActivity, "进入隐私空间", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@CalculatorActivity, MainActivity::class.java))

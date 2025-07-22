@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TitleView">
+        <attr name="titleText" format="string" />
+        <attr name="titleCentered" format="boolean" />
+        <attr name="rightText" format="string" />
+        <attr name="rightIcon" format="reference" />
+        <attr name="showBack" format="boolean" />
+    </declare-styleable>
+</resources>
