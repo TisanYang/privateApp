@@ -4,10 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:background="@color/text_sel"/>
+
     <!-- 外层模块 RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:padding="5dp"
-        android:layout_marginTop="32dp"
         android:id="@+id/moduleRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"

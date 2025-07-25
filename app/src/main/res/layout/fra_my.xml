@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:background="@color/text_sel" />
 
     <!-- 隐私空间 -->
     <LinearLayout
-        android:layout_marginTop="16dp"
         android:id="@+id/ll_privacy_space"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:padding="12dp"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
 
         <TextView
             android:id="@+id/tv_privacy_space"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="隐私空间"
             android:textSize="18sp" />
 
@@ -31,8 +33,8 @@
             android:id="@+id/iv_privacy_space_arrow"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/icon_right_arrow"
-            android:contentDescription="箭头" />
+            android:contentDescription="箭头"
+            android:src="@drawable/icon_right_arrow" />
     </LinearLayout>
 
     <View
@@ -45,18 +47,18 @@
         android:id="@+id/ll_password_lock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:padding="12dp"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
 
         <TextView
             android:id="@+id/tv_password_lock"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="密码设置"
             android:textSize="18sp" />
 
@@ -64,8 +66,8 @@
             android:id="@+id/iv_password_lock_arrow"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/icon_right_arrow"
-            android:contentDescription="箭头" />
+            android:contentDescription="箭头"
+            android:src="@drawable/icon_right_arrow" />
     </LinearLayout>
 
     <View
@@ -78,18 +80,18 @@
         android:id="@+id/ll_feedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:padding="12dp"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
 
         <TextView
             android:id="@+id/tv_feedback"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="问题反馈"
             android:textSize="18sp" />
 
@@ -97,8 +99,8 @@
             android:id="@+id/iv_feedback_arrow"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/icon_right_arrow"
-            android:contentDescription="箭头" />
+            android:contentDescription="箭头"
+            android:src="@drawable/icon_right_arrow" />
     </LinearLayout>
 
 </LinearLayout>

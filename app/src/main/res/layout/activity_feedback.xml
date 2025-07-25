@@ -8,6 +8,10 @@
     android:background="@android:color/white"
     android:orientation="vertical">
 
+    <View
+        android:background="#3366FF"
+        android:layout_width="match_parent"
+        android:layout_height="36dp" />
 
     <com.tisan.share.base.TitleView
         android:id="@+id/title_feedback"

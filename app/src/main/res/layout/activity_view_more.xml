@@ -7,9 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <View
+        android:background="#3366FF"
+        android:layout_width="match_parent"
+        android:layout_height="36dp" />
+
     <!-- 顶部功能栏 -->
     <LinearLayout
-        android:layout_marginTop="32dp"
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

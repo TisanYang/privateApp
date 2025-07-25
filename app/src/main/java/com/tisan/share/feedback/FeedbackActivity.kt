@@ -21,7 +21,7 @@ class FeedbackActivity : BaseActivity<ActivityFeedbackBinding, FeedbackViewModel
     override fun initViews() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.root_feedback)) { view, insets ->
             val bottom = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
-            view.setPadding(0, 52, 0, bottom)
+            view.setPadding(0, 0, 0, bottom)
             insets
         }
 

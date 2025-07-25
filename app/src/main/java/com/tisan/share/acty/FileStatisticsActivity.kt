@@ -44,14 +44,14 @@ class FileStatisticsActivity :
             ivIcon.setImageResource(R.drawable.ic_placeholder_left)
             tvLabel.text = "图片"
             tvCount.text = formatModuleCountAndSize(ModuleType.IMAGE, "张", moduleSizes)
-            tvPercent.text = getModuleSizePercentText(ModuleType.IMAGE,moduleSizes)
+            tvPercent.text = getModuleSizePercentText(ModuleType.IMAGE, moduleSizes)
         }
 
         binding.itemVideo.apply {
             ivIcon.setImageResource(R.drawable.ic_placeholder_left)
             tvLabel.text = "视频"
             tvCount.text = formatModuleCountAndSize(ModuleType.VIDEO, "个", moduleSizes)
-            tvPercent.text = getModuleSizePercentText(ModuleType.VIDEO,moduleSizes)
+            tvPercent.text = getModuleSizePercentText(ModuleType.VIDEO, moduleSizes)
 
         }
 
@@ -59,14 +59,14 @@ class FileStatisticsActivity :
             ivIcon.setImageResource(R.drawable.ic_placeholder_left)
             tvLabel.text = "音频"
             tvCount.text = formatModuleCountAndSize(ModuleType.AUDIO, "条", moduleSizes)
-            tvPercent.text = getModuleSizePercentText(ModuleType.AUDIO,moduleSizes)
+            tvPercent.text = getModuleSizePercentText(ModuleType.AUDIO, moduleSizes)
         }
 
         binding.itemDocument.apply {
             ivIcon.setImageResource(R.drawable.ic_placeholder_left)
             tvLabel.text = "文档"
             tvCount.text = formatModuleCountAndSize(ModuleType.DOCUMENT, "个", moduleSizes)
-            tvPercent.text = getModuleSizePercentText(ModuleType.DOCUMENT,moduleSizes)
+            tvPercent.text = getModuleSizePercentText(ModuleType.DOCUMENT, moduleSizes)
         }
 
         val totalCount = FileRepository.getFullModules().sumOf { it.files.size }
@@ -77,6 +77,7 @@ class FileStatisticsActivity :
         }
 
     }
+
     fun formatSize(bytes: Long): String {
         if (bytes < 1024) return "$bytes B"
         val kb = bytes / 1024.0
@@ -93,9 +94,14 @@ class FileStatisticsActivity :
         unitName: String,
         moduleSizes: Map<ModuleType, Long>
     ): String {
-        val count = FileRepository.getModulesByType(moduleType)[0].files.size
-        val sizeText = moduleSizes[moduleType]?.let { formatSize(it) } ?: "0 B"
-        return "$count $unitName，$sizeText"
+        val modulesByType = FileRepository.getModulesByType(moduleType)
+        if (modulesByType.isNotEmpty()) {
+            val count = modulesByType[0].files.size
+            val sizeText = moduleSizes[moduleType]?.let { formatSize(it) } ?: "0 B"
+            return "$count $unitName，$sizeText"
+        }else{
+            return "0 $unitName，0"
+        }
     }
 
     fun getModuleSizePercentText(
@@ -108,7 +114,6 @@ class FileStatisticsActivity :
         val percent = moduleSize.toDouble() / totalSize * 100
         return String.format("%.2f%%", percent)
     }
-
 
 
 }

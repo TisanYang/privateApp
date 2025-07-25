@@ -30,7 +30,7 @@ abstract class BaseFragment<Binding : ViewBinding, VM : ViewModel> : Fragment() 
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        makeStatusBarTransparent()
+        //makeStatusBarTransparent()
         binding = inflateBinding(inflater, container)
         return binding.root
     }

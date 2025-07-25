@@ -1,0 +1,28 @@
+package com.tisan.share.net
+
+import android.util.Log
+import com.tisan.share.utils.LogUtil
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
+
+object RetrofitClient {
+
+    const val BASE_URL = "https://api.yourserver.com/"
+
+    private val loggingInterceptor = HttpLoggingInterceptor {
+        LogUtil.d("HTTP", it)
+    }.apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
+
+    val okHttpClient = OkHttpClient.Builder()
+        .connectTimeout(15, TimeUnit.SECONDS)
+        .readTimeout(20, TimeUnit.SECONDS)
+        .writeTimeout(20, TimeUnit.SECONDS)
+        .addInterceptor(loggingInterceptor)
+        .build()
+
+}

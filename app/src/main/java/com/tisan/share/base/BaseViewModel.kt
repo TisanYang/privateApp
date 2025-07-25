@@ -4,6 +4,10 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tisan.share.net.ApiResponse
+import com.tisan.share.net.ApiService
+import com.tisan.share.net.CacheManager
+import com.tisan.share.net.RetrofitClient
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -11,12 +15,23 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 open class BaseViewModel : ViewModel() {
 
     val isLoading = MutableLiveData<Boolean>()
     val errorMsg = MutableLiveData<String?>()
     val toastEvent = MutableLiveData<String>()
+
+    val api: ApiService by lazy {
+        Retrofit.Builder()
+            .baseUrl(RetrofitClient.BASE_URL)
+            .client(RetrofitClient.okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiService::class.java)
+    }
 
     /**
      * 快捷 log 打印
@@ -67,5 +82,64 @@ open class BaseViewModel : ViewModel() {
     suspend fun <T> onIO(block: suspend () -> T): T {
         return withContext(Dispatchers.IO) { block() }
     }
+
+//    fun <T> request(
+//        requestBlock: suspend () -> ApiResponse<T>,
+//        resultLiveData: MutableLiveData<T>
+//    ) {
+//        viewModelScope.launch {
+//            try {
+//                isLoading.postValue(true)
+//
+//                val response = requestBlock()
+//                if (response.isSuccess()) {
+//                    response.data?.let {
+//                        resultLiveData.postValue(it)
+//                    }
+//                } else {
+//                    errorMsg.postValue(response.message)
+//                }
+//
+//            } catch (e: Exception) {
+//                errorMsg.postValue(e.message ?: "网络异常")
+//            } finally {
+//                isLoading.postValue(false)
+//            }
+//        }
+//    }
+
+    /**
+     * 网络请求简化封装，无缓存版本
+     */
+    fun <T> launchRequest(
+        resultLiveData: MutableLiveData<T>,
+        block: suspend () -> ApiResponse<T>
+    ) {
+        viewModelScope.launch {
+            isLoading.postValue(true)
+            try {
+                val response = block()
+                if (response.isSuccess()) {
+                    response.data?.let {
+                        resultLiveData.postValue(it)
+                    }
+                } else {
+                    errorMsg.postValue(response.message)
+                }
+            } catch (e: Exception) {
+                errorMsg.postValue(e.message ?: "网络异常")
+            } finally {
+                isLoading.postValue(false)
+            }
+        }
+    }
+
+}
+
+enum class CacheMode {
+    NO_CACHE,
+    ONLY_CACHE,
+    ONLY_NETWORK,
+    FIRST_CACHE_THEN_NETWORK
 }
 

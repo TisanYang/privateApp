@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+   <!-- <View
+        android:background="#3366FF"
+        android:layout_width="match_parent"
+        android:layout_height="36dp" />-->
+
     <!-- Fragment 容器 -->
     <FrameLayout
         android:id="@+id/fragmentContainer"

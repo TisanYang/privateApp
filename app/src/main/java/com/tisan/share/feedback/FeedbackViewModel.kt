@@ -4,10 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.tisan.share.base.BaseViewModel
+import com.tisan.share.net.FeedbackSubmitRequest
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class FeedbackViewModel : BaseViewModel() {
+
+    private val testData = MutableLiveData<String>()
 
     private val _submitResult = MutableLiveData<Boolean>()
     val submitResult: LiveData<Boolean> = _submitResult
@@ -19,5 +22,9 @@ class FeedbackViewModel : BaseViewModel() {
             // TODO: 这里接入接口
             _submitResult.value = true
         }
+    }
+
+    fun submitFeedback() {
+        launchRequest(testData) { api.submitFeedback(FeedbackSubmitRequest("")) }
     }
 }
