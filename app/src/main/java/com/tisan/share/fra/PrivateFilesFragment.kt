@@ -92,6 +92,11 @@ class PrivateFilesFragment : BaseFragment<ActivityVaultBinding, VaultViewModel>(
     override fun initData() {
 
         viewModel.modules.observe(viewLifecycleOwner) { moduleList ->
+
+            if(moduleList.isEmpty()){
+                Toast.makeText(context,"没有数据",Toast.LENGTH_SHORT).show()
+            }
+
             moduleAdapter.submitList(moduleList)
 
             allEncryptedImageFiles = moduleList

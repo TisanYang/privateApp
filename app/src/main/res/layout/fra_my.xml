@@ -103,4 +103,41 @@
             android:src="@drawable/icon_right_arrow" />
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DDDDDD" />
+
+    <LinearLayout
+        android:id="@+id/ll_change_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/tv_change_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="图标设置"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/iv_change_info"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="箭头"
+            android:src="@drawable/icon_right_arrow" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DDDDDD" />
+
 </LinearLayout>

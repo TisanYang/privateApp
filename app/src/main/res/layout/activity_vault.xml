@@ -1,21 +1,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:background="@color/total_bg"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/total_bg"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:background="@color/text_sel"/>
+        android:background="@color/text_sel" />
 
     <!-- 外层模块 RecyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:padding="5dp"
-        android:id="@+id/moduleRecyclerView"
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/moduleRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp" />
+    </RelativeLayout>
 
     <!-- 添加文件按钮 -->
     <Button
