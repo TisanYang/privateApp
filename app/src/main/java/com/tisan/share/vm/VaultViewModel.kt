@@ -15,6 +15,7 @@ import com.tisan.share.datdabean.EncryptedFileItem
 import com.tisan.share.datdabean.FileModuleItem
 import com.tisan.share.datdabean.ModuleType
 import com.tisan.share.utils.CryptoUtil
+import com.tisan.share.utils.EventBus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -151,6 +152,7 @@ object VaultViewModel : BaseViewModel() {
 
                 // ✅ 更新 FileRepository 缓存
                 FileRepository.updateCache(modules, modulesAll)
+                EventBus.updateCacheData.emit(Unit)
             }
         }
     }

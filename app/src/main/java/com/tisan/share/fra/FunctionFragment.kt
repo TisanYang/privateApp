@@ -5,6 +5,8 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Path.Direction
+import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -24,7 +26,18 @@ import java.io.File
 import androidx.activity.result.contract.ActivityResultContracts.TakeVideo
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SimpleItemAnimator
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.tisan.share.acty.AudioVaultActivity
+import com.tisan.share.acty.ImagePreviewActivity
+import com.tisan.share.acty.VideoPreviewActivity
+import com.tisan.share.dapter.RecentAdapter
+import com.tisan.share.data.FileRepository
+import com.tisan.share.datdabean.ModuleType
 import com.tisan.share.utils.EventBus
 import com.tisan.share.utils.LogUtil
 import com.tisan.share.vm.SharedEventViewModel
@@ -34,10 +47,13 @@ import kotlinx.coroutines.launch
 class FunctionFragment : BaseFragment<FraFunctionBinding, FunctionViewModel>() {
 
     override val viewModelClass = FunctionViewModel::class.java
+    private val recentAdapter = RecentAdapter()
 
-//    private val sharedViewModel: SharedEventViewModel by activityViewModels()
 
-    override fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?): FraFunctionBinding {
+    override fun inflateBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FraFunctionBinding {
         return FraFunctionBinding.inflate(inflater, container, false)
     }
 
@@ -65,14 +81,15 @@ class FunctionFragment : BaseFragment<FraFunctionBinding, FunctionViewModel>() {
         }
 
 
-    private val takePhotoLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
-        if (success) {
-            val uri = Uri.fromFile(tempPhotoFile)
-            viewModel.importEncryptedFile(requireContext(), uri)
-        } else {
-            Toast.makeText(requireContext(), "取消拍照", Toast.LENGTH_SHORT).show()
+    private val takePhotoLauncher =
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+            if (success) {
+                val uri = Uri.fromFile(tempPhotoFile)
+                viewModel.importEncryptedFile(requireContext(), uri)
+            } else {
+                Toast.makeText(requireContext(), "取消拍照", Toast.LENGTH_SHORT).show()
+            }
         }
-    }
 
 
     // 拍视频回调，返回缩略图 Bitmap?
@@ -98,38 +115,52 @@ class FunctionFragment : BaseFragment<FraFunctionBinding, FunctionViewModel>() {
 //        }
 //    }
 
-    private val takeVideoLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val uri = result.data?.data ?: videoUri
+    private val takeVideoLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val uri = result.data?.data ?: videoUri
 
-            try {
-                val inputStream = requireContext().contentResolver.openInputStream(uri)
-                if (inputStream != null && inputStream.available() > 0) {
-                    viewModel.importEncryptedFile(requireContext(), uri)
-                } else {
-                    Toast.makeText(requireContext(), "录像失败，无内容", Toast.LENGTH_SHORT).show()
+                try {
+                    val inputStream = requireContext().contentResolver.openInputStream(uri)
+                    if (inputStream != null && inputStream.available() > 0) {
+                        viewModel.importEncryptedFile(requireContext(), uri)
+                    } else {
+                        Toast.makeText(requireContext(), "录像失败，无内容", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(
+                        requireContext(),
+                        "读取录像失败：${e.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-            } catch (e: Exception) {
-                Toast.makeText(requireContext(), "读取录像失败：${e.message}", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "取消录像", Toast.LENGTH_SHORT).show()
             }
-        } else {
-            Toast.makeText(requireContext(), "取消录像", Toast.LENGTH_SHORT).show()
         }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnTakePhoto.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+        binding.llTakePhoto.setOnClickListener {
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.CAMERA
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
                 startTakePhoto()
             } else {
                 cameraPermissionLauncherForPhoto.launch(Manifest.permission.CAMERA)
             }
         }
 
-        binding.btnTakeVideo.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+        binding.llTakeVideo.setOnClickListener {
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.CAMERA
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
                 startTakeVideo()
             } else {
                 cameraPermissionLauncherForVideo.launch(Manifest.permission.CAMERA)
@@ -158,7 +189,82 @@ class FunctionFragment : BaseFragment<FraFunctionBinding, FunctionViewModel>() {
                 }
             }
         }
+
+        binding.rvRecent.apply {
+            layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL).apply {
+                gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
+            }
+
+            setHasFixedSize(false)
+
+            isNestedScrollingEnabled = false
+            //(itemAnimator as? SimpleItemAnimator)?.supportsChangeAnimations = false
+
+            addItemDecoration(object : RecyclerView.ItemDecoration() {
+                override fun getItemOffsets(
+                    outRect: Rect,
+                    v: View,
+                    p: RecyclerView,
+                    s: RecyclerView.State
+                ) {
+                    outRect.set(1, 1, 1, 1)
+                }
+            })
+            adapter = recentAdapter.apply {
+                lookLook = { item ->
+                    if (item.mimeType.startsWith("image/")) {
+                        val index =
+                            FileRepository.getModulesByType(ModuleType.IMAGE)[0].files.indexOfFirst { it.filePath == item.filePath }
+                        val intent =
+                            Intent(requireContext(), ImagePreviewActivity::class.java).apply {
+                                putParcelableArrayListExtra(
+                                    "imageList",
+                                    ArrayList(FileRepository.getModulesByType(ModuleType.IMAGE)[0].files)
+                                )
+                                putExtra("startIndex", index)
+                            }
+                        startActivity(intent)
+                    } else if (item.mimeType.startsWith("video/")) {
+
+                        val index =
+                            FileRepository.getModulesByType(ModuleType.IMAGE)[0].files.indexOfFirst { it.filePath == item.filePath }
+                        val intent =
+                            Intent(requireContext(), VideoPreviewActivity::class.java).apply {
+                                putParcelableArrayListExtra(
+                                    "videoList",
+                                    ArrayList(FileRepository.getModulesByType(ModuleType.VIDEO)[0].files)
+                                )
+                                putExtra("startIndex", index)
+                            }
+                        startActivity(intent)
+                    }
+                }
+            }
+
+            val recents = FileRepository.getFullModules().flatMap {
+                it.files
+            }
+                .filter { it.mimeType.startsWith("image/") || it.mimeType.startsWith("video/") }
+                .sortedByDescending { it.timestamp }
+                .take(6)
+            recentAdapter.submitList(recents)
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                EventBus.updateCacheData.collect {
+                    val recents = FileRepository.getFullModules()
+                        .flatMap { it.files }
+                        .filter { it.mimeType.startsWith("image/") || it.mimeType.startsWith("video/") }
+                        .sortedByDescending { it.timestamp }
+                        .take(6)
+                    recentAdapter.submitList(recents)
+                }
+            }
+        }
+
     }
+
 
     private fun startTakePhoto() {
         tempPhotoFile = File.createTempFile("photo_", ".jpg", requireContext().cacheDir)
@@ -195,6 +301,15 @@ class FunctionFragment : BaseFragment<FraFunctionBinding, FunctionViewModel>() {
             addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
         takeVideoLauncher.launch(intent)
+    }
+
+    private fun refreshRecent() {
+        val recents = FileRepository.getFullModules()
+            .flatMap { it.files }
+            .filter { it.mimeType.startsWith("image/") || it.mimeType.startsWith("video/") }
+            .sortedByDescending { it.timestamp }
+            .take(6)
+        recentAdapter.submitList(recents)
     }
 
 

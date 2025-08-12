@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,7 +32,7 @@ class ModuleAdapter : ListAdapter<FileModuleItem, ModuleAdapter.ModuleViewHolder
 
     inner class ModuleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val title = view.findViewById<TextView>(R.id.moduleTitle)
-        private val seeMore = view.findViewById<LinearLayout>(R.id.ll_seemore)
+        private val seeMore = view.findViewById<RelativeLayout>(R.id.ll_seemore)
         private val fileRv = view.findViewById<RecyclerView>(R.id.fileRecyclerView)
 
         fun bind(item: FileModuleItem) {

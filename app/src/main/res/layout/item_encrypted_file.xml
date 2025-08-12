@@ -1,37 +1,43 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="76dp"
-    android:layout_height="100dp">
+    android:layout_marginRight="5dp"
+    android:layout_height="100dp"
+    android:orientation="vertical">
 
     <!-- 缩略图 -->
-    <ImageView
-        android:padding="5dp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/fileThumb"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_fileThumb"
+        app:cardCornerRadius="8dp"
         android:layout_width="76dp"
-        android:layout_height="76dp"
-        android:scaleType="centerCrop"
-        android:background="#eeeeee"/>
+        android:layout_height="76dp">
+
+        <ImageView
+            android:id="@+id/fileThumb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+    </androidx.cardview.widget.CardView>
 
     <!-- 文件名 -->
     <TextView
-        android:textColor="@color/text_secondary"
-        android:gravity="center"
-        android:text="123"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/fileThumb"
         android:id="@+id/fileName"
         android:layout_width="match_parent"
         android:layout_height="24dp"
-        android:textSize="12sp"
+        android:layout_below="@+id/cv_fileThumb"
+        android:layout_centerHorizontal="true"
+        android:ellipsize="end"
+        android:gravity="center"
         android:maxLines="1"
-        android:ellipsize="end"/>
+        android:text="123"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp" />
 
     <CheckBox
-        android:visibility="gone"
-        android:checked="true"
-        android:layout_alignParentEnd="true"
         android:id="@+id/cb"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:checked="true"
+        android:visibility="gone" />
 </RelativeLayout>

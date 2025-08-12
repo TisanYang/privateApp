@@ -2,10 +2,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/shape_8_white"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
     android:paddingBottom="5dp">
 
     <!-- 标题 + 查看更多 -->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/ll_seemore"
         android:padding="5dp"
         android:layout_width="match_parent"
@@ -14,21 +17,25 @@
         android:gravity="center_vertical">
 
         <TextView
+            android:layout_centerVertical="true"
             android:textColor="@color/text_primary"
             android:id="@+id/moduleTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="图片"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold"/>
 
         <TextView
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:id="@+id/seeMore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="查看更多 >"
             android:textColor="@android:color/holo_blue_dark"/>
-    </LinearLayout>
+    </RelativeLayout>
 
     <!-- 内层横向 RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
