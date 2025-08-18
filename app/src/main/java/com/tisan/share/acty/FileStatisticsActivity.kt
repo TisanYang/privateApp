@@ -2,8 +2,8 @@ package com.tisan.share.acty
 
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.tisan.location.R
-import com.tisan.location.databinding.ActivityFileStatisticsBinding
+import com.kj.infinite.R
+import com.kj.infinite.databinding.ActivityFileStatisticsBinding
 import com.tisan.share.base.BaseActivity
 import com.tisan.share.data.FileRepository
 import com.tisan.share.datdabean.ModuleType

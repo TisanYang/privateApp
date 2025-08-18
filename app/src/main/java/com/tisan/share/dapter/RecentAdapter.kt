@@ -10,7 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.tisan.location.R
+import com.kj.infinite.R
 import com.tisan.share.datdabean.EncryptedFileItem
 import com.tisan.share.datdabean.FileModuleItem
 import com.tisan.share.utils.CryptoUtil

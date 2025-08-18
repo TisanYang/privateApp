@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.tisan.location.databinding.ItemFeedbackBinding
+import com.kj.infinite.databinding.ItemFeedbackBinding
 import com.tisan.share.data.FeedbackRecord
 
 class FeedbackAdapter(

@@ -7,11 +7,32 @@ plugins {
 }
 
 android {
-    namespace 'com.tisan.location'
+    namespace 'com.kj.infinite'
     compileSdk 34
 
+    def password = "kjuninfinite955"
+    def alias = "kj"
+    def filePath = "../keystore/kj.jks"
+    signingConfigs {
+        release {
+            keyAlias alias
+            keyPassword password
+            storeFile file(filePath)
+            storePassword(password)
+            v2SigningEnabled false
+        }
+
+        debug {
+            keyAlias alias
+            keyPassword password
+            storeFile file(filePath)
+            storePassword(password)
+        }
+
+    }
+
     defaultConfig {
-        applicationId "com.tisan.location"
+        applicationId "com.kj.infinite"
         minSdk 24
         targetSdk 33
         versionCode 1

@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.DrawableRes
-import com.tisan.location.R
+import com.kj.infinite.R
 
 class TitleView@JvmOverloads constructor(
     context: Context,

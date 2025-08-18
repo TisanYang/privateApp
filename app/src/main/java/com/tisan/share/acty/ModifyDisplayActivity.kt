@@ -4,8 +4,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.tisan.location.R
-import com.tisan.location.databinding.ActivityModifyDisplayBinding
+import com.kj.infinite.R
+import com.kj.infinite.databinding.ActivityModifyDisplayBinding
 import com.tisan.share.base.BaseActivity
 import com.tisan.share.dapter.DisplayOptionsAdapter
 import com.tisan.share.data.DisplayOption

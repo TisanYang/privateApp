@@ -3,8 +3,8 @@ package com.tisan.share.acty
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.tabs.TabLayout
-import com.tisan.location.R
-import com.tisan.location.databinding.ActivityMainBinding
+import com.kj.infinite.R
+import com.kj.infinite.databinding.ActivityMainBinding
 import com.tisan.share.base.BaseActivity
 import com.tisan.share.fra.FunctionFragment
 import com.tisan.share.fra.ManagerFragment

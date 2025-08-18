@@ -2,8 +2,7 @@ package com.tisan.share
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.result.contract.ActivityResultContracts
-import com.tisan.location.databinding.ActivityDialerBinding
+import com.kj.infinite.databinding.ActivityDialerBinding
 import com.tisan.share.acty.VaultActivity
 import com.tisan.share.base.BaseActivity
 import com.tisan.share.vm.SimpleViewModel

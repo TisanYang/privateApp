@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
-import com.tisan.location.databinding.ActivityImagePreviewBinding
+import com.kj.infinite.databinding.ActivityImagePreviewBinding
 import com.tisan.share.base.BaseActivity
 import com.tisan.share.dapter.ImagePreviewAdapter
 import com.tisan.share.datdabean.EncryptedFileItem

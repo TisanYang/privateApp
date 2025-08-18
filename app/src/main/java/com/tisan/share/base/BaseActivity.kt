@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.gyf.immersionbar.ImmersionBar
-import com.tisan.location.R
+import com.kj.infinite.R
 
 abstract class BaseActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivity() {
 

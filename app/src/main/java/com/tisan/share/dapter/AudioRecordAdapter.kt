@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.tisan.location.databinding.ItemAudioRecordBinding
+import com.kj.infinite.databinding.ItemAudioRecordBinding
 import com.tisan.share.data.AudioRecordItem
 
 class AudioRecordAdapter :

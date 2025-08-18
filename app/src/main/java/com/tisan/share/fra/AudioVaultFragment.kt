@@ -10,7 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tisan.location.databinding.FraAudioVaultBinding
+import com.kj.infinite.databinding.FraAudioVaultBinding
 import com.tisan.share.base.BaseFragment
 import com.tisan.share.dapter.AudioRecordAdapter
 import com.tisan.share.dia.AudioRecordBottomSheet

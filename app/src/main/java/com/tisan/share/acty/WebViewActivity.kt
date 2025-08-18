@@ -7,7 +7,7 @@ import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.tisan.location.databinding.ActivityWebviewBinding
+import com.kj.infinite.databinding.ActivityWebviewBinding
 import com.tisan.share.base.BaseActivity
 import com.tisan.share.vm.WebViewViewModel
 

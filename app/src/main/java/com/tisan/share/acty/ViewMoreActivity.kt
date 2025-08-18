@@ -10,8 +10,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.tisan.share.dapter.ViewMoreFileAdapter
 import androidx.recyclerview.widget.GridLayoutManager
-import com.tisan.location.R
-import com.tisan.location.databinding.ActivityViewMoreBinding
+import com.kj.infinite.R
+import com.kj.infinite.databinding.ActivityViewMoreBinding
 import com.tisan.share.base.BaseActivity
 import com.tisan.share.data.FileRepository
 import com.tisan.share.datdabean.EncryptedFileItem

@@ -3,8 +3,8 @@ package com.tisan.share.feedback
 import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.tisan.location.R
-import com.tisan.location.databinding.ActivityFeedbackBinding
+import com.kj.infinite.R
+import com.kj.infinite.databinding.ActivityFeedbackBinding
 import com.tisan.share.base.BaseActivity
 
 

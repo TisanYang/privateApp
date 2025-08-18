@@ -18,7 +18,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import com.tisan.location.databinding.FraFunctionBinding
+import com.kj.infinite.databinding.FraFunctionBinding
 import com.tisan.share.base.BaseFragment
 import com.tisan.share.vm.FunctionViewModel
 import kotlinx.coroutines.flow.collectLatest

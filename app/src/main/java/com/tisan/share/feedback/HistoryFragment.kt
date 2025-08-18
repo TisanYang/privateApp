@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tisan.location.databinding.FraHistoryBinding
+import com.kj.infinite.databinding.FraHistoryBinding
 import com.tisan.share.base.BaseFragment
 
 

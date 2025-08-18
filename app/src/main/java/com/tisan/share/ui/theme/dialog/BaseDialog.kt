@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.annotation.LayoutRes
 import androidx.viewbinding.ViewBinding
-import com.tisan.location.R
+import com.kj.infinite.R
 
 abstract class BaseDialog<VB : ViewBinding>(
     context: Context,

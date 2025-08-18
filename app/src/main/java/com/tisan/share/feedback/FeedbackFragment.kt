@@ -6,7 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import com.tisan.location.databinding.FragmentFeedbackBinding
+import com.kj.infinite.databinding.FragmentFeedbackBinding
 import com.tisan.share.base.BaseFragment
 
 class FeedbackFragment : BaseFragment<FragmentFeedbackBinding, FeedbackViewModel>() {

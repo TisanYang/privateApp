@@ -8,7 +8,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tisan.location.databinding.ActivityVaultBinding
+import com.kj.infinite.databinding.ActivityVaultBinding
 import com.tisan.share.base.BaseActivity
 import com.tisan.share.dapter.ModuleAdapter
 import com.tisan.share.datdabean.EncryptedFileItem

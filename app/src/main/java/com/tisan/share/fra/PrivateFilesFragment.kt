@@ -13,7 +13,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tisan.location.databinding.ActivityVaultBinding
+import com.kj.infinite.databinding.ActivityVaultBinding
 import com.tisan.share.acty.ImagePreviewActivity
 import com.tisan.share.acty.VideoPreviewActivity
 import com.tisan.share.acty.ViewMoreActivity

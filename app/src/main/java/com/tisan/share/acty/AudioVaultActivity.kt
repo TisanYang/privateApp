@@ -2,8 +2,8 @@ package com.tisan.share.acty
 
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.tisan.location.R
-import com.tisan.location.databinding.ActivityAudioVaultBinding
+import com.kj.infinite.R
+import com.kj.infinite.databinding.ActivityAudioVaultBinding
 import com.tisan.share.base.BaseActivity
 import com.tisan.share.fra.AudioVaultFragment
 import com.tisan.share.vm.AudioVaultViewModel

@@ -2,7 +2,7 @@ package com.tisan.share
 
 import android.content.Intent
 import android.os.Bundle
-import com.tisan.location.databinding.ActivityMainBinding
+import com.kj.infinite.databinding.ActivityMainBinding
 import com.tisan.share.acty.CalculatorActivity
 import com.tisan.share.base.BaseActivity
 import com.tisan.share.vm.SimpleViewModel

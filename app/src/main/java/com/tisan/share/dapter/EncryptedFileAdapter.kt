@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.tisan.location.R
+import com.kj.infinite.R
 import com.tisan.share.datdabean.EncryptedFileItem
 import com.tisan.share.utils.CryptoUtil
 import java.io.File

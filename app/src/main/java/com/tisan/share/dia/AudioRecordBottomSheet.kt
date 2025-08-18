@@ -25,7 +25,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.tisan.location.databinding.DialogAudioRecordBinding
+import com.kj.infinite.databinding.DialogAudioRecordBinding
 import com.tisan.share.utils.CryptoUtil
 import com.tisan.share.vm.AudioRecordViewModel
 import dagger.hilt.android.AndroidEntryPoint

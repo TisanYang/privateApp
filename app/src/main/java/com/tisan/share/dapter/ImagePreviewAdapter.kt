@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.github.chrisbanes.photoview.PhotoView
-import com.tisan.location.R
+import com.kj.infinite.R
 import com.tisan.share.datdabean.EncryptedFileItem
 import com.tisan.share.utils.CryptoUtil
 import java.io.File

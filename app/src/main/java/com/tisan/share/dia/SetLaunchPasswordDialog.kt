@@ -6,8 +6,8 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
-import com.tisan.location.R
-import com.tisan.location.databinding.DialogSetLaunchPasswordBinding
+import com.kj.infinite.R
+import com.kj.infinite.databinding.DialogSetLaunchPasswordBinding
 import com.tisan.share.ui.theme.dialog.BaseDialog
 import com.tisan.share.utils.Constant
 import com.tisan.share.utils.SecureSpHelper

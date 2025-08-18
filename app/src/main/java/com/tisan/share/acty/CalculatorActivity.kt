@@ -7,7 +7,7 @@ import android.text.TextUtils
 import android.widget.Toast
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import com.tisan.location.databinding.ActivityCalculatorBinding
+import com.kj.infinite.databinding.ActivityCalculatorBinding
 import com.tisan.share.base.BaseActivity
 import com.tisan.share.dia.SetLaunchPasswordDialog
 import com.tisan.share.ui.theme.dialog.PermissionDialog

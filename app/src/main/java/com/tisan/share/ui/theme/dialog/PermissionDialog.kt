@@ -11,8 +11,8 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import androidx.core.content.ContextCompat.startActivity
-import com.tisan.location.R
-import com.tisan.location.databinding.DialogPermissionBinding
+import com.kj.infinite.R
+import com.kj.infinite.databinding.DialogPermissionBinding
 import com.tisan.share.acty.WebViewActivity
 
 class PermissionDialog(

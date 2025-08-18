@@ -13,7 +13,7 @@ dependencyResolutionManagement {
         maven { url 'https://jitpack.io' }
     }
 }
-rootProject.name = "location"
+rootProject.name = "infinite"
 include ':app'
 
 

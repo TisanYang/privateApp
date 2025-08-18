@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.tisan.location.R
+import com.kj.infinite.R
 import com.tisan.share.base.BaseViewModel
 import com.tisan.share.datdabean.TabInfo
 

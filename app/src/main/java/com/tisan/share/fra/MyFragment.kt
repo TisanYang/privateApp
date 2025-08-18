@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.tisan.location.R
-import com.tisan.location.databinding.FraMyBinding
+import com.kj.infinite.R
+import com.kj.infinite.databinding.FraMyBinding
 import com.tisan.share.acty.FileStatisticsActivity
 import com.tisan.share.acty.ModifyDisplayActivity
 import com.tisan.share.base.BaseFragment

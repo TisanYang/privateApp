@@ -113,7 +113,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.tisan.location.fileprovider"
+            android:authorities="com.kj.infinite.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

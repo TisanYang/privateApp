@@ -1,8 +1,8 @@
 package com.tisan.share.ui.theme.dialog
 
 import android.content.Context
-import com.tisan.location.R
-import com.tisan.location.databinding.DialogConfirmBinding
+import com.kj.infinite.R
+import com.kj.infinite.databinding.DialogConfirmBinding
 
 class ConfirmDialog(
     context: Context,
