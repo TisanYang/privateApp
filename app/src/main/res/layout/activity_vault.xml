@@ -17,17 +17,28 @@
         android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginRight="15dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
             android:id="@+id/moduleRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="5dp" />
+
+        <include
+            android:id="@+id/viewEmpty"
+            layout="@layout/item_empty_state"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <!-- 添加文件按钮 -->
     <Button
+        android:layout_margin="8dp"
+        android:textColor="@color/white"
+        android:background="@drawable/calc_btn_blue"
         android:id="@+id/addFileButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

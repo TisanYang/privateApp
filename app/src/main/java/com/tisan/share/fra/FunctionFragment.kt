@@ -37,6 +37,7 @@ import com.tisan.share.acty.ImagePreviewActivity
 import com.tisan.share.acty.VideoPreviewActivity
 import com.tisan.share.dapter.RecentAdapter
 import com.tisan.share.data.FileRepository
+import com.tisan.share.datdabean.EncryptedFileItem
 import com.tisan.share.datdabean.ModuleType
 import com.tisan.share.utils.EventBus
 import com.tisan.share.utils.LogUtil
@@ -90,30 +91,6 @@ class FunctionFragment : BaseFragment<FraFunctionBinding, FunctionViewModel>() {
                 Toast.makeText(requireContext(), "取消拍照", Toast.LENGTH_SHORT).show()
             }
         }
-
-
-    // 拍视频回调，返回缩略图 Bitmap?
-//    private val takeVideoLauncher = registerForActivityResult(TakeVideo()) { bitmap: Bitmap? ->
-//        // 录像完成后，判断文件是否存在且大小 > 0，作为成功判断
-//        val file = File(videoUri.path ?: "")
-//        if (file.exists() && file.length() > 0) {
-//            viewModel.importEncryptedFile(requireContext(), videoUri)
-//        } else {
-//            Toast.makeText(requireContext(), "取消录像或录制失败", Toast.LENGTH_SHORT).show()
-//        }
-//    }
-//    private val takeVideoLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-//        if (result.resultCode == Activity.RESULT_OK) {
-//            val file = File(videoUri.path ?: "")
-//            if (file.exists() && file.length() > 0) {
-//                viewModel.importEncryptedFile(requireContext(), videoUri)
-//            } else {
-//                Toast.makeText(requireContext(), "录像失败，文件为空", Toast.LENGTH_SHORT).show()
-//            }
-//        } else {
-//            Toast.makeText(requireContext(), "取消录像", Toast.LENGTH_SHORT).show()
-//        }
-//    }
 
     private val takeVideoLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -247,7 +224,11 @@ class FunctionFragment : BaseFragment<FraFunctionBinding, FunctionViewModel>() {
                 .filter { it.mimeType.startsWith("image/") || it.mimeType.startsWith("video/") }
                 .sortedByDescending { it.timestamp }
                 .take(6)
-            recentAdapter.submitList(recents)
+
+           // recentAdapter.submitList(recents)
+            refreshRv(recents)
+
+
         }
 
         lifecycleScope.launchWhenStarted {
@@ -258,11 +239,24 @@ class FunctionFragment : BaseFragment<FraFunctionBinding, FunctionViewModel>() {
                         .filter { it.mimeType.startsWith("image/") || it.mimeType.startsWith("video/") }
                         .sortedByDescending { it.timestamp }
                         .take(6)
-                    recentAdapter.submitList(recents)
+
+                    refreshRv(recents)
                 }
             }
         }
 
+    }
+
+    private fun refreshRv(recents: List<EncryptedFileItem>) {
+        if (recents.isEmpty()) {
+            binding.viewEmpty.llviewEmpty.visibility = View.VISIBLE
+            binding.rvRecent.visibility = View.GONE
+        } else {
+            binding.viewEmpty.llviewEmpty.visibility = View.GONE
+            binding.rvRecent.visibility = View.VISIBLE
+        }
+
+        recentAdapter.submitList(recents)
     }
 
 

@@ -35,11 +35,12 @@
             android:id="@+id/btnSelectAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="全选"
+            android:text="全选编辑"
             android:textColor="@color/text_sel"
             android:padding="8dp" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/btnInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

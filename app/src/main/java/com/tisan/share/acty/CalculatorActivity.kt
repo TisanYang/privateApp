@@ -1,9 +1,12 @@
 package com.tisan.share.acty
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.tisan.location.databinding.ActivityCalculatorBinding
 import com.tisan.share.base.BaseActivity
 import com.tisan.share.dia.SetLaunchPasswordDialog
@@ -26,6 +29,10 @@ class CalculatorActivity : BaseActivity<ActivityCalculatorBinding, SimpleViewMod
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
+        window.statusBarColor = Color.TRANSPARENT
         setContentView(binding.root)
 
         // 所有按钮绑定监听
@@ -79,8 +86,16 @@ class CalculatorActivity : BaseActivity<ActivityCalculatorBinding, SimpleViewMod
 //            return
 //        }
 
+        if (SecureSpHelper.getString(Constant.SP_VERIFY_KEY).isNullOrEmpty()) {
+            SetLaunchPasswordDialog(this) {
+                // 密码设置成功后的动作
 
-       // SecureSpHelper.putInt(Constant.SP_POLICY_AGREE, 0)
+            }.apply {
+                setCancelable(false)
+            }.show()
+        }
+
+        // SecureSpHelper.putInt(Constant.SP_POLICY_AGREE, 0)
         //未同意隐私政策和用户协议
         if (SecureSpHelper.getInt(Constant.SP_POLICY_AGREE, 0) == 0) {
             PermissionDialog(this,
@@ -95,13 +110,6 @@ class CalculatorActivity : BaseActivity<ActivityCalculatorBinding, SimpleViewMod
                     finish() // 退出 App 或拦截继续操作
                 })
                 .show()
-        }
-
-        if (SecureSpHelper.getString(Constant.SP_VERIFY_KEY).isNullOrEmpty()) {
-            SetLaunchPasswordDialog(this) {
-                // 密码设置成功后的动作
-
-            }.show()
         }
 
     }

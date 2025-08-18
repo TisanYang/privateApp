@@ -21,6 +21,13 @@
         android:orientation="horizontal"
         android:padding="12dp">
 
+        <ImageView
+            android:src="@mipmap/iv_kongjian"
+            android:scaleType="fitXY"
+            android:layout_marginRight="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <TextView
             android:id="@+id/tv_privacy_space"
             android:layout_width="0dp"
@@ -54,6 +61,13 @@
         android:orientation="horizontal"
         android:padding="12dp">
 
+        <ImageView
+            android:src="@mipmap/ic_change_psd"
+            android:scaleType="fitXY"
+            android:layout_marginRight="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <TextView
             android:id="@+id/tv_password_lock"
             android:layout_width="0dp"
@@ -86,6 +100,13 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="12dp">
+
+        <ImageView
+            android:src="@mipmap/iv_feedback"
+            android:scaleType="fitXY"
+            android:layout_marginRight="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/tv_feedback"

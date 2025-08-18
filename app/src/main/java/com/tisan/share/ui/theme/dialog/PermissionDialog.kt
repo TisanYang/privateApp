@@ -26,6 +26,8 @@ class PermissionDialog(
 ) {
 
     override fun initView() {
+        setCancelable(false)
+
         // 设置标题
         binding.tvTitle.text = "权限申请说明"
 

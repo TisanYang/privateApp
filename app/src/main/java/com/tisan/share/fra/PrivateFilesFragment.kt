@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -93,8 +94,12 @@ class PrivateFilesFragment : BaseFragment<ActivityVaultBinding, VaultViewModel>(
 
         viewModel.modules.observe(viewLifecycleOwner) { moduleList ->
 
-            if(moduleList.isEmpty()){
-                Toast.makeText(context,"没有数据",Toast.LENGTH_SHORT).show()
+            if (moduleList.isEmpty()) {
+                binding.viewEmpty.llviewEmpty.visibility = View.VISIBLE
+                binding.moduleRecyclerView.visibility = View.GONE
+            } else {
+                binding.viewEmpty.llviewEmpty.visibility = View.GONE
+                binding.moduleRecyclerView.visibility = View.VISIBLE
             }
 
             moduleAdapter.submitList(moduleList)

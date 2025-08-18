@@ -22,10 +22,10 @@ object MainViewModel : BaseViewModel(){
     }
 
     val tabList = listOf(
-        TabInfo("文件", R.drawable.file_unsel, R.drawable.file_sel),
-        TabInfo("拍摄", R.drawable.take_unsel, R.drawable.take_sel),
+        TabInfo("文件", R.mipmap.file_unsel, R.mipmap.file_sel),
+        TabInfo("拍摄", R.mipmap.capture_unsel, R.mipmap.capture_sel),
         //TabInfo("收藏", R.drawable.love_unsel, R.drawable.love_sel),
-        TabInfo("我的", R.drawable.my_unsel, R.drawable.my_sel)
+        TabInfo("我的", R.mipmap.my_unsel, R.mipmap.my_sel)
     )
 
     fun createTabView(context: Context, info: TabInfo, selected: Boolean): View {

@@ -27,7 +27,13 @@ class SetLaunchPasswordDialog(
 
     override fun initView() {
 
+        setCancelable(false)
+
         binding.rlPasswordOld.visibility = if (isChange)  View.VISIBLE else View.GONE
+        if (isChange){
+            setCancelable(true)
+            setCanceledOnTouchOutside(true)
+        }
         // 显示密码切换
 
         binding.ivTogglePwdOld.setOnClickListener {

@@ -1,16 +1,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clipToPadding="false"
+    android:clipChildren="false"
     android:layout_width="76dp"
-    android:layout_marginRight="5dp"
     android:layout_height="100dp"
-    android:orientation="vertical">
+    android:layout_marginRight="5dp">
 
     <!-- 缩略图 -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_fileThumb"
-        app:cardCornerRadius="8dp"
         android:layout_width="76dp"
-        android:layout_height="76dp">
+        android:layout_height="76dp"
+        app:cardCornerRadius="8dp">
 
         <ImageView
             android:id="@+id/fileThumb"
@@ -24,8 +25,7 @@
         android:id="@+id/fileName"
         android:layout_width="match_parent"
         android:layout_height="24dp"
-        android:layout_below="@+id/cv_fileThumb"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@id/cv_fileThumb"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
@@ -33,11 +33,16 @@
         android:textColor="@color/text_secondary"
         android:textSize="12sp" />
 
+    <!-- 勾选框：放在最后，盖在最上层 -->
     <CheckBox
+        android:visibility="gone"
         android:id="@+id/cb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:checked="true"
-        android:visibility="gone" />
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignTop="@id/cv_fileThumb"
+        android:layout_alignEnd="@id/cv_fileThumb"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
+        android:background="@android:color/transparent"
+        android:elevation="3dp" />
 </RelativeLayout>

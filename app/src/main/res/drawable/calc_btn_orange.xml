@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#33FF9800"> <!-- 半透明橙色波纹 -->
+    <item>
+        <selector>
+            <!-- 按下状态 -->
+            <item android:state_pressed="true">
+                <shape android:shape="rectangle">
+                    <solid android:color="#E68900"/> <!-- 深一点的橙色 -->
+                    <corners android:radius="8dp"/>
+                </shape>
+            </item>
+            <!-- 默认状态 -->
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#FF9800"/> <!-- 默认橙色 -->
+                    <corners android:radius="8dp"/>
+                </shape>
+            </item>
+        </selector>
+    </item>
+</ripple>

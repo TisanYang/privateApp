@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#33000000"> <!-- 点击时波纹颜色（半透明黑） -->
+    <item>
+        <selector>
+            <!-- 按下状态 -->
+            <item android:state_pressed="true">
+                <shape android:shape="rectangle">
+                    <solid android:color="#D6D6D6"/> <!-- 深一点的灰色 -->
+                    <corners android:radius="8dp"/>
+                </shape>
+            </item>
+            <!-- 默认状态 -->
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#F0F0F0"/> <!-- 默认灰色 -->
+                    <corners android:radius="8dp"/>
+                </shape>
+            </item>
+        </selector>
+    </item>
+</ripple>

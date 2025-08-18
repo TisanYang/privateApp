@@ -50,7 +50,7 @@
             android:text="提交反馈"
             android:textSize="18sp"
             android:textColor="@android:color/white"
-            android:background="@drawable/bg_btn_submit" />
+            android:background="@drawable/shape_blue_submit" />
 
     </LinearLayout>
 </ScrollView>
