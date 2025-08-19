@@ -58,6 +58,8 @@ class CalculatorActivity : BaseActivity<ActivityCalculatorBinding, SimpleViewMod
                 input = ""
                 binding.result.text = ""
             }
+            startActivity(Intent(this@CalculatorActivity, MainActivity::class.java))
+            return@with
 
             btnEqual.setOnClickListener {
 //

@@ -186,6 +186,7 @@
 
         <!-- 等号按钮，占满一整行 -->
         <Button
+            android:textColor="@color/white"
             android:background="@drawable/calc_btn_blue"
             android:id="@+id/btnEqual"
             android:layout_width="match_parent"

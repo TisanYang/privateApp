@@ -40,7 +40,7 @@
                     android:layout_height="65dp">
 
                     <ImageView
-                        android:src="@drawable/my_sel"
+                        android:src="@mipmap/icon_function_photo"
                         android:layout_width="25dp"
                         android:layout_height="25dp" />
 
@@ -68,7 +68,7 @@
                     android:layout_height="65dp">
 
                     <ImageView
-                        android:src="@drawable/my_sel"
+                        android:src="@mipmap/icon_function_video"
                         android:layout_width="25dp"
                         android:layout_height="25dp" />
 

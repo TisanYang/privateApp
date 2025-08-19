@@ -204,7 +204,7 @@ class FunctionFragment : BaseFragment<FraFunctionBinding, FunctionViewModel>() {
                     } else if (item.mimeType.startsWith("video/")) {
 
                         val index =
-                            FileRepository.getModulesByType(ModuleType.IMAGE)[0].files.indexOfFirst { it.filePath == item.filePath }
+                            FileRepository.getModulesByType(ModuleType.VIDEO)[0].files.indexOfFirst { it.filePath == item.filePath }
                         val intent =
                             Intent(requireContext(), VideoPreviewActivity::class.java).apply {
                                 putParcelableArrayListExtra(

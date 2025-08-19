@@ -21,10 +21,10 @@
 
         <ImageView
             android:id="@+id/icPlay"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_gravity="center"
-            android:src="@drawable/my_sel"
+            android:src="@mipmap/icon_play"
             android:visibility="gone" />
     </FrameLayout>
 </androidx.cardview.widget.CardView>
