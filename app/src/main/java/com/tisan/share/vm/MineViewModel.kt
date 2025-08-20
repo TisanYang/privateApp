@@ -1,13 +1,20 @@
 package com.tisan.share.vm
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tisan.share.net.RetrofitClient
 import com.tisan.share.net.requestbean.CommentRequest
+import com.tisan.share.net.responsebean.CommentResponse
 import kotlinx.coroutines.launch
 
-class SimpleViewModel : ViewModel() {
+class MineViewModel : ViewModel() {
+
+    private val _commentResponse = MutableLiveData<CommentResponse?>()
+    val commentState: LiveData<CommentResponse?> = _commentResponse
+
     fun submitComment() {
         viewModelScope.launch {
             try {
@@ -20,6 +27,7 @@ class SimpleViewModel : ViewModel() {
                 )
                 if (response.isSuccess()) {
                     Log.d("API", "评论提交成功: ${response.data}")
+                    _commentResponse.value = response.data
                 } else {
                     Log.e("API", "提交失败: ${response.message}")
                 }

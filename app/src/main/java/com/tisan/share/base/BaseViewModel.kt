@@ -6,15 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tisan.share.net.ApiResponse
 import com.tisan.share.net.ApiService
-import com.tisan.share.net.CacheManager
 import com.tisan.share.net.RetrofitClient
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
