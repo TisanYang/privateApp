@@ -11,6 +11,7 @@ import android.webkit.MimeTypeMap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
+import com.tisan.share.base.BaseViewModel
 import com.tisan.share.utils.CryptoUtil
 import com.tisan.share.utils.EventBus
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,7 +27,7 @@ import javax.inject.Inject
 //object FunctionViewModel : ViewModel() {
 //}
 @HiltViewModel
-class FunctionViewModel @Inject constructor() : ViewModel() {
+class FunctionViewModel @Inject constructor() : BaseViewModel() {
 
     val importResult = MutableStateFlow("")
     val importProgress = MutableStateFlow<ImportProgress?>(null)

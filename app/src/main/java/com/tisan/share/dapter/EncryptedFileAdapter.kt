@@ -67,9 +67,11 @@ class EncryptedFileAdapter(
                         CryptoUtil.decryptFile(encryptedFile, tempFile)
 
                         // 用 Glide 加载解密后的图像
-                        Glide.with(itemView.context).load(tempFile)
-                            .placeholder(R.drawable.ic_launcher_background)
-                            .error(R.drawable.ic_launcher_background).into(thumb)
+                        if (item.mimeType.startsWith("audio/")) {
+                            Glide.with(itemView.context).load(R.mipmap.icon_audio_placeholder)
+                                .into(thumb)
+                        }
+
 
                     } catch (e: Exception) {
                         // 加载失败时可以显示默认图

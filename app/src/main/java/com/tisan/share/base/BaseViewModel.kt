@@ -1,6 +1,7 @@
 package com.tisan.share.base
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,6 +17,9 @@ open class BaseViewModel : ViewModel() {
     val isLoading = MutableLiveData<Boolean>()
     val errorMsg = MutableLiveData<String?>()
     val toastEvent = MutableLiveData<String>()
+
+    val _uiState = MutableLiveData<UiState<Any>>()
+    val uiState: LiveData<UiState<Any>> get() = _uiState
 
     val api: ApiService by lazy {
         Retrofit.Builder()
@@ -38,6 +42,31 @@ open class BaseViewModel : ViewModel() {
      */
     fun showToast(msg: String) {
         toastEvent.postValue(msg)
+    }
+
+    fun <T> launchWithUiState(
+        onSuccess: (T?) -> Unit = {},
+        onFailure: (String) -> Unit = {},
+        block: suspend () -> ApiResponse<T>
+    ) {
+        viewModelScope.launch {
+            _uiState.value = UiState.Loading
+            delay(3000)
+            try {
+                val result = block()
+                if (result.isSuccess()) {
+                    _uiState.value = UiState.Success(result.data)
+                    onSuccess(result.data)
+                } else {
+                    _uiState.value = UiState.Failure(result.message)
+                    onFailure(result.message)
+                }
+            } catch (e: Exception) {
+                val msg = e.message ?: "网络异常"
+                _uiState.value = UiState.Failure(msg)
+                onFailure(msg)
+            }
+        }
     }
 
     /**
@@ -123,6 +152,26 @@ open class BaseViewModel : ViewModel() {
                 errorMsg.postValue(e.message ?: "网络异常")
             } finally {
                 isLoading.postValue(false)
+            }
+        }
+    }
+
+    protected fun <T> requestWithUiState(
+        liveData: MutableLiveData<UiState<T>>,
+        block: suspend () -> ApiResponse<T>
+    ) {
+        viewModelScope.launch {
+            liveData.value = UiState.Loading
+            delay(3000)
+            try {
+                val result = block()
+                if (result.isSuccess()) {
+                    liveData.value = UiState.Success(result.data)
+                } else {
+                    liveData.value = UiState.Failure(result.message)
+                }
+            } catch (e: Exception) {
+                liveData.value = UiState.Failure(e.message ?: "网络异常")
             }
         }
     }

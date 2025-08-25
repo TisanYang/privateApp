@@ -35,13 +35,43 @@
     </RelativeLayout>
 
     <!-- 添加文件按钮 -->
-    <Button
+ <!--   <Button
+        android:visibility="gone"
         android:layout_margin="8dp"
         android:textColor="@color/white"
         android:background="@drawable/calc_btn_blue"
         android:id="@+id/addFileButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="添加隐私文件" />
+        android:text="添加隐私文件" />-->
+
+    <LinearLayout
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="50dp"
+        android:id="@+id/addFileButton"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="end|bottom"
+        android:background="@drawable/bg_add_file_btn"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="4dp"
+        android:elevation="4dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@mipmap/icon_add" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加文件"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+    </LinearLayout>
+
 
 </LinearLayout>

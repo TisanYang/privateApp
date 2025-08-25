@@ -3,9 +3,10 @@ package com.tisan.share.vm
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.tisan.share.base.BaseViewModel
 import com.tisan.share.data.AudioRecordItem
 
-class AudioVaultViewModel  constructor() : ViewModel() {
+class AudioVaultViewModel  constructor() : BaseViewModel() {
 
     private val allRecords = mutableListOf<AudioRecordItem>()
 

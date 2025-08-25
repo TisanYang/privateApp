@@ -47,7 +47,7 @@
             android:layout_marginRight="32dp"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="提交反馈"
+            android:text="提交"
             android:textSize="18sp"
             android:textColor="@android:color/white"
             android:background="@drawable/shape_blue_submit" />

@@ -5,12 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tisan.share.base.BaseViewModel
 import com.tisan.share.net.RetrofitClient
 import com.tisan.share.net.requestbean.CommentRequest
 import com.tisan.share.net.responsebean.CommentResponse
 import kotlinx.coroutines.launch
 
-class MineViewModel : ViewModel() {
+class MineViewModel : BaseViewModel() {
 
     private val _commentResponse = MutableLiveData<CommentResponse?>()
     val commentState: LiveData<CommentResponse?> = _commentResponse

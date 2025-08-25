@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.kj.infinite.databinding.FragmentFeedbackBinding
 import com.tisan.share.base.BaseFragment
+import com.tisan.share.net.responsebean.CommentResponse
 
 class FeedbackFragment : BaseFragment<FragmentFeedbackBinding, FeedbackViewModel>() {
 
@@ -26,7 +27,18 @@ class FeedbackFragment : BaseFragment<FragmentFeedbackBinding, FeedbackViewModel
             }
 
             // 调用 ViewModel 提交
-            viewModel.submitFeedback(feedbackText)
+            viewModel.submitFeedbackInO(feedbackText, requireContext())
+//            viewModel.launchWithUiState<CommentResponse>(
+//                onSuccess = { data ->
+//                    binding.etFeedback.setText("反馈成功：${data?.id}")
+//                },
+//                onFailure = { msg ->
+//                    // 如果你想自定义失败处理（可选）
+//                    Toast.makeText(context, "提交失败：$msg", Toast.LENGTH_SHORT).show()
+//                }
+//            ) {
+//                viewModel.submitFeedback(feedbackText, requireContext())
+//            }
         }
 
         view?.viewTreeObserver?.addOnGlobalLayoutListener {
@@ -55,6 +67,7 @@ class FeedbackFragment : BaseFragment<FragmentFeedbackBinding, FeedbackViewModel
                     binding.tvCharCount.text = "还可以输入 $remaining 字"
                 }
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
@@ -62,13 +75,14 @@ class FeedbackFragment : BaseFragment<FragmentFeedbackBinding, FeedbackViewModel
     }
 
     override fun observeData() {
-        viewModel.submitResult.observe(viewLifecycleOwner) { success ->
-            if (success) {
-                Toast.makeText(requireContext(), "提交成功", Toast.LENGTH_SHORT).show()
-                binding.etFeedback.text.clear()
-            } else {
-                Toast.makeText(requireContext(), "提交失败，请重试", Toast.LENGTH_SHORT).show()
+
+        viewModel.submitResultInO.observeUiState(
+            onSuccess = {
+                binding.etFeedback.setText("反馈成功：${it?.id}")
+            },
+            onFailure = {
+                showToast("id")
             }
-        }
+        )
     }
 }

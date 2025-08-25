@@ -3,6 +3,7 @@ package com.tisan.share.dapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.kj.infinite.R
 import com.tisan.share.datdabean.EncryptedFileItem
 import com.tisan.share.datdabean.FileModuleItem
@@ -32,11 +34,31 @@ class ModuleAdapter : ListAdapter<FileModuleItem, ModuleAdapter.ModuleViewHolder
 
     inner class ModuleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val title = view.findViewById<TextView>(R.id.moduleTitle)
+        private val iv = view.findViewById<ImageView>(R.id.iv_moduleTitle)
         private val seeMore = view.findViewById<RelativeLayout>(R.id.ll_seemore)
         private val fileRv = view.findViewById<RecyclerView>(R.id.fileRecyclerView)
 
         fun bind(item: FileModuleItem) {
             title.text = item.title
+            //("图片", "视频", "音频", "其他文件")
+            when (title.text) {
+                "图片" ->
+                    Glide.with(itemView.context)
+                        .load(R.mipmap.icon_pic)
+                        .into(iv)
+                "视频" ->
+                    Glide.with(itemView.context)
+                        .load(R.mipmap.icon_video)
+                        .into(iv)
+                "音频" ->
+                    Glide.with(itemView.context)
+                        .load(R.mipmap.icon_audio)
+                        .into(iv)
+                "其他文件" ->
+                    Glide.with(itemView.context)
+                        .load(R.mipmap.icon_file)
+                        .into(iv)
+            }
             seeMore.setOnClickListener {
                 onSeeMoreClick?.invoke(item)
             }

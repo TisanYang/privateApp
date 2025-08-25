@@ -15,7 +15,7 @@ object RetrofitClient {
 
 
     private val loggingInterceptor = HttpLoggingInterceptor {
-        LogUtil.d("HTTP", it)
+        LogUtil.d("HTTP_RESPONSE", it)
     }.apply {
         level = HttpLoggingInterceptor.Level.BODY
     }

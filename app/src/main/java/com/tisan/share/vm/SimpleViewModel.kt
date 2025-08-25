@@ -3,11 +3,12 @@ package com.tisan.share.vm
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tisan.share.base.BaseViewModel
 import com.tisan.share.net.RetrofitClient
 import com.tisan.share.net.requestbean.CommentRequest
 import kotlinx.coroutines.launch
 
-class SimpleViewModel : ViewModel() {
+class SimpleViewModel : BaseViewModel() {
     fun submitComment() {
         viewModelScope.launch {
             try {
